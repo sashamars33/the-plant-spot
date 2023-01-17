@@ -1,0 +1,11 @@
+{
+  "name": "the-plant-spot",
+  "version": "1.0.0",
+  "description": "Social media site for plant lovers.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "author": "Sasha Marshall",
+  "license": "ISC"
+}
