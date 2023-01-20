@@ -6,3 +6,7 @@ const errorHandler = (err, req, res, next) => {
         stack: process.env.ENV = 'dev' ? null : err.stack
     })
 }
+
+module.exports = {
+    errorHandler,
+}
