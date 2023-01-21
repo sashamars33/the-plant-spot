@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler')
-const bcrpyt = require('bcryptjs')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 
@@ -7,13 +7,11 @@ const User = require('../models/User')
 
 const registerUser = asyncHandler(async (req,res) => {
     const {name, email, password} = req.body
-    
     //Validation 
     if(!name || !email || !password){
         res.status(400)
         throw new Error('Please include all fields.')
     }
-
     //Check is user exists
     const findExistingUser = await User.findOne({email})
     if(findExistingUser){
@@ -22,7 +20,7 @@ const registerUser = asyncHandler(async (req,res) => {
     }
     
     //Hash Password
-    const salt = await bcrpyt.genSalt(10)
+    const salt = await bcrypt.genSalt(10)
     const hashedPass = await bcrypt.hash(password, salt)
 
     //Create User
@@ -31,6 +29,7 @@ const registerUser = asyncHandler(async (req,res) => {
         email,
         password: hashedPass
     })
+
 
     if(user) {
         res.status(201).json({
@@ -47,8 +46,9 @@ const registerUser = asyncHandler(async (req,res) => {
 
 const loginUser = asyncHandler( async (req,res) => {
     const {email, password} = req.body
+    console.log(req.body)
     const user = await User.findOne({email})
-    if( user && (await bcrpyt.compare(password, user.password))){
+    if( user && (await bcrypt.compare(password, user.password))){
         res.status(200).json({
             _id: user._id,
             name: user.name,
