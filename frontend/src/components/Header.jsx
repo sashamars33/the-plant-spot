@@ -1,7 +1,13 @@
-import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa'
-import {Link, useNavigate} from 'react-router-dom'
+// import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa'
+import {Link , useNavigate} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import {logout, reset} from '../features/auth/authSlice'
+import Button from '@mui/material/Button'
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+// import Link from '@mui/material/Link'
+
 
 
 const Header = () => {
@@ -17,20 +23,22 @@ const Header = () => {
   }
 
   return (
-    <header className="">
-        <div className="">
-            <Link to='/'>The Plant Spot</Link>
-        </div>
-        <ul className="">
+    <Box>
+      <AppBar position='static' sx={{}}>
+        <Toolbar style={{justifyContent: "space-between"}}>
+          <Link to='/' style={{textDecoration: 'none', color: '#f5f5f5'}}>The Plant Spot</Link>
+
           {user ? (
-          <li><button className="" onClick={onLogout}><FaSignOutAlt /> Logout</button></li>
+          <Button variant="contained" onClick={onLogout}>Logout</Button>
           ) : (
-            <>
-            <li><Link to='/login'><FaSignInAlt /> Login</Link></li>
-            <li><Link to='/register'><FaUser /> Register</Link></li>
-            </>) } 
-        </ul>
-    </header>
+            <Box>
+              <Button color="info"><Link style={{textDecoration: 'none', color: '#f5f5f5'}} to='/login'>Login</Link></Button>
+              <Button color="info"><Link style={{textDecoration: 'none', color: '#f5f5f5'}} to='/register'>Register</Link></Button>
+            </Box>
+            ) } 
+        </Toolbar>
+      </AppBar>
+    </Box>
   )
 }
 

@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const dotenv = require('dotenv').config()
 const color = require('colors')
 const {errorHandler} = require('./middleware/errorMiddleware')
@@ -17,6 +18,7 @@ app.get('/', (req,res) => {
 })
 //Routes
 app.use('/api/users', require('./routes/userRoutes'))
+app.use('/api/profile', require('./routes/profileRoutes'))
 
 //Error Handler
 app.use(errorHandler)

@@ -9,9 +9,13 @@ const PostSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add a caption to your post.']
     },
-    img_url: {
+    imgUrl: {
         type: String,
-        required: [true, 'Please add a password.']
+        required: true
+    },
+    cloudinaryId: {
+        type: String,
+        required: true
     },
     likes: {
         type: Number,

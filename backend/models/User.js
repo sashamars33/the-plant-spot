@@ -13,6 +13,18 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add a password.']
     },
+    bio: {
+        type: String,
+        default: ''
+    },
+    profileImg: {
+        type: String,
+        default: ''
+    },
+    cloudinaryId: {
+        type: String,
+        default: ''
+    },
     isAdmin: {
         type: Boolean,
         required: true,
