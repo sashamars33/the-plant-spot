@@ -27,7 +27,7 @@ const Login = () => {
         }
 
         if(isSuccess || user){
-            navigate('/')
+            navigate('/profile')
         }
 
         dispatch(reset()) 
