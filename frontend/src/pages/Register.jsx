@@ -1,10 +1,15 @@
 import {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
-import {FaUser} from 'react-icons/fa'
 import {useSelector, useDispatch} from 'react-redux'
 import {register, reset} from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import Paper from '@mui/material/Paper'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import CssBaseline from '@mui/material/CssBaseline'
 
 const Register = () => {
 
@@ -28,7 +33,7 @@ const Register = () => {
         }
 
         if(isSuccess || user){
-            navigate('/')
+            navigate('/profile')
         }
 
         dispatch(reset()) 
@@ -64,30 +69,33 @@ const Register = () => {
 
   return (
     <>
-       <section className="">
-            <h1><FaUser /> Register</h1>
+    <CssBaseline />
+    <Paper style={{height: '100vh', textAlign: 'center', padding: '5% 10%'}}>
+        <Card sx={{bgcolor: "background.default"}}>
+       <CardContent>
+            <h1>Register</h1>
             <p>Fill out the form below to create an account.</p>
-       </section>
+       </CardContent>
 
-       <section className="">
+       <CardContent style={{width: '75%', margin: 'auto'}}>
             <form className="" onSubmit={onSubmit}>
-                <div className="">
-                    <input required type="text" className="" id="name" name="name" value={name} onChange={onChange} placeholder="Enter your name.. "></input>
-                </div>
-                <div className="">
-                    <input required type="text" className="" id="email" name="email" value={email} onChange={onChange} placeholder="Enter your email.. "></input>
-                </div>
-                <div className="">
-                    <input required type="text" className="" id="password" name="password" value={password} onChange={onChange} placeholder="Enter a password.. "></input>
-                </div>
-                <div className="">
-                    <input required type="text" className="" id="password2" name="password2" value={password2} onChange={onChange} placeholder="Confirm password.. "></input>
-                </div>
-                <div className="">
-                    <button className="">Submit</button>
-                </div>
+                <TextField variant="filled" label="Name" color="primary" style={{width: '80%', margin: "1% 10%"}}>
+                    <input required type="text" id="name" name="name" value={name} onChange={onChange} placeholder="Enter your name.. "></input>
+                </TextField>
+                <TextField variant="filled" label="Email" color="primary" style={{width: '80%', margin: "1% 10%"}}>
+                    <input required type="text" id="email" name="email" value={email} onChange={onChange} placeholder="Enter your email.. "></input>
+                </TextField>
+                <TextField variant="filled" label="Password" color="primary" style={{width: '80%', margin: "1% 10%"}}>
+                    <input required type="text" id="password" name="password" value={password} onChange={onChange} placeholder="Enter a password.. "></input>
+                </TextField>
+                <TextField variant="filled" label="Confirm Password" color="primary" style={{width: '80%', margin: "1% 10%"}}>
+                    <input required type="text" id="password2" name="password2" value={password2} onChange={onChange} placeholder="Confirm password.. "></input>
+                </TextField>
+                    <Button variant='contained' sx={{m: '2%'}}><button style={{background: 'none', border: 'none', color: '#eeeeee', textTransform: 'uppercase'}}>Submit</button></Button>
             </form>
-       </section>
+       </CardContent>
+       </Card>
+    </Paper>
     </>
   )
 }

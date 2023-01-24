@@ -29,7 +29,7 @@ const Header = () => {
           <Link to='/' style={{textDecoration: 'none', color: '#f5f5f5'}}>The Plant Spot</Link>
 
           {user ? (
-          <Button variant="contained" onClick={onLogout}>Logout</Button>
+          <Button variant="contained" color="info" onClick={onLogout}>Logout</Button>
           ) : (
             <Box>
               <Button color="info"><Link style={{textDecoration: 'none', color: '#f5f5f5'}} to='/login'>Login</Link></Button>

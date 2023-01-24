@@ -24,7 +24,7 @@ const PostSchema = mongoose.Schema({
     },
     user: {
         type: String,
-        required 
+        required: true
     }
 },
     { timestamps: true, }
