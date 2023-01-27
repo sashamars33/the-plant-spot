@@ -10,6 +10,7 @@ import CardContent from '@mui/material/CardContent'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
+import FormControl from '@mui/material/FormControl'
 
 const Register = () => {
 
@@ -28,12 +29,15 @@ const Register = () => {
     const {user, isLoading, isError, isSuccess, message} = useSelector(state => state.auth)
 
     useEffect(() => {
+
+        console.log(message)
         if(isError){
             toast.error(message)
         }
 
         if(isSuccess || user){
             navigate('/profile')
+            console.log(user)
         }
 
         dispatch(reset()) 
@@ -58,7 +62,6 @@ const Register = () => {
                 email,
                 password
             }
-
             dispatch(register(userData))
         }
     }
@@ -77,22 +80,18 @@ const Register = () => {
             <p>Fill out the form below to create an account.</p>
        </CardContent>
 
-       <CardContent style={{width: '75%', margin: 'auto'}}>
-            <form className="" onSubmit={onSubmit}>
-                <TextField variant="filled" label="Name" color="primary" style={{width: '80%', margin: "1% 10%"}}>
-                    <input required type="text" id="name" name="name" value={name} onChange={onChange} placeholder="Enter your name.. "></input>
+       <CardContent >
+            <FormControl style={{width: '85%'}}>
+                <TextField variant="filled" label="Name" color="primary" style={{margin: '2% 0'}} required type="text" id="name" name="name" value={name} onChange={onChange}>
                 </TextField>
-                <TextField variant="filled" label="Email" color="primary" style={{width: '80%', margin: "1% 10%"}}>
-                    <input required type="text" id="email" name="email" value={email} onChange={onChange} placeholder="Enter your email.. "></input>
+                <TextField variant="filled" label="Email" color="primary" style={{ margin: '2% 0'}} required type="text" id="email" name="email" value={email} onChange={onChange}>
                 </TextField>
-                <TextField variant="filled" label="Password" color="primary" style={{width: '80%', margin: "1% 10%"}}>
-                    <input required type="text" id="password" name="password" value={password} onChange={onChange} placeholder="Enter a password.. "></input>
+                <TextField variant="filled" label="Password" color="primary" style={{ margin: '2% 0'}} required type="text" id="password" name="password" value={password} onChange={onChange}>
                 </TextField>
-                <TextField variant="filled" label="Confirm Password" color="primary" style={{width: '80%', margin: "1% 10%"}}>
-                    <input required type="text" id="password2" name="password2" value={password2} onChange={onChange} placeholder="Confirm password.. "></input>
+                <TextField variant="filled" label="Confirm Password" color="primary" style={{ margin: '2% 0'}} required type="text" id="password2" name="password2" value={password2} onChange={onChange}>
                 </TextField>
-                    <Button variant='contained' sx={{m: '2%'}}><button style={{background: 'none', border: 'none', color: '#eeeeee', textTransform: 'uppercase'}}>Submit</button></Button>
-            </form>
+                    <Button variant='contained' onClick={onSubmit} style={{margin: '2% 0', padding: '2%'}}>Submit</Button>
+            </FormControl>
        </CardContent>
        </Card>
     </Paper>
@@ -101,3 +100,22 @@ const Register = () => {
 }
 
 export default Register
+
+
+
+
+{/* <form className="" onSubmit={onSubmit}>
+                <TextField variant="filled" label="Name" color="primary" style={{width: '80%', margin: '1% 0'}}>
+                    <input required type="text" id="name" name="name" value={name} onChange={onChange} placeholder="Enter your name.. "></input>
+                </TextField>
+                <TextField variant="filled" label="Email" color="primary" style={{width: '80%', margin: '1% 0'}}>
+                    <input required type="text" id="email" name="email" value={email} onChange={onChange} placeholder="Enter your email.. "></input>
+                </TextField>
+                <TextField variant="filled" label="Password" color="primary" style={{width: '80%', margin: '1% 0'}}>
+                    <input required type="text" id="password" name="password" value={password} onChange={onChange} placeholder="Enter a password.. "></input>
+                </TextField>
+                <TextField variant="filled" label="Confirm Password" color="primary" style={{width: '80%', margin: '1% 0'}}>
+                    <input required type="text" id="password2" name="password2" value={password2} onChange={onChange} placeholder="Confirm password.. "></input>
+                </TextField>
+                    <button style={{background: 'none', border: 'none', color: '#000', textTransform: 'uppercase'}}>Submit</button>
+            </form> */}

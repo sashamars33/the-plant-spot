@@ -5,6 +5,13 @@ import {useNavigate} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import {login, reset} from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import Paper from '@mui/material/Paper'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import CssBaseline from '@mui/material/CssBaseline'
+import FormControl from '@mui/material/FormControl'
 
 
 const Login = () => {
@@ -49,7 +56,6 @@ const Login = () => {
             email,
             password
         }
-
         dispatch(login(userData))
     }
 
@@ -60,24 +66,25 @@ const Login = () => {
 
   return (
     <>
-       <section className="">
-            <h1><FaSignInAlt /> Login</h1>
-            <p>Please login!</p>
-       </section>
+    <CssBaseline />
+    <Paper style={{height: '100vh', textAlign: 'center', padding: '5% 10%'}}>
+        <Card sx={{bgcolor: "background.default"}}>
+       <CardContent >
+            <h1>Login</h1>
+            <p>Enter your account email and password to login.</p>
+       </CardContent>
 
-       <section className="">
-            <form className="" onSubmit={onSubmit}>
-                <div className="">
-                    <input required type="text" className="" id="email" name="email" value={email} onChange={onChange} placeholder="Enter your email.. "></input>
-                </div>
-                <div className="">
-                    <input required type="text" className="" id="password" name="password" value={password} onChange={onChange} placeholder="Enter a password.. "></input>
-                </div>
-                <div className="">
-                    <button className="">Submit</button>
-                </div>
-            </form>
-       </section>
+       <CardContent style={{width: '75%', margin: 'auto'}}>
+            <FormControl style={{width: '80%'}}>
+                <TextField variant="filled" label="Email" color="primary" style={{ margin: "2% 0"}} required type="text"  id="email" name="email" value={email} onChange={onChange}>
+                </TextField>
+                <TextField variant="filled" label="Password" color="primary" style={{ margin: "2% 0"}}required type="text"  id="password" name="password" value={password} onChange={onChange}>
+                </TextField>
+                    <Button variant='contained' onClick={onSubmit} style={{margin: '2% 0', padding: '2%'}}>Submit</Button>
+            </FormControl>
+       </CardContent>
+       </Card>
+    </Paper>
     </>
   )
 }
